@@ -23,6 +23,22 @@ class AppointmentsController < ApplicationController
     @appointment = Appointment.find(params[:id])
   end
 
+  def edit
+    @appointment = Appointment.find(params[:id])
+  end
+
+  def update
+    @appointment = Appointment.find(params[:id])
+
+    if @appointment.update(appointment_params)
+      flash[:notice] = "Appointment has been updated."
+      redirect_to @appointment
+    else
+      flash.now[:alert] = "Appointment has not been updated."
+      render "edit"
+    end
+  end
+
   private
     def appointment_params
       params.require(:appointment).permit(:date, :time)

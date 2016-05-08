@@ -1,4 +1,5 @@
 <h3>Appointment Details</h3>
 
-<p>time: <%= @appointment.time %></p>
 <p>date: <%= @appointment.date %></p>
+<p>time: <%= @appointment.time %></p>
+<%= link_to "Edit Appointment", edit_appointment_path(@appointment) %>
