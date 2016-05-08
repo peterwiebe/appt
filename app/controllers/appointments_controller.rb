@@ -13,7 +13,8 @@ class AppointmentsController < ApplicationController
       flash[:notice] = "Appointment has been created."
       redirect_to @appointment
     else
-      #nothing yet
+      flash.now[:alert] = "Appointment has not been created."
+      render "new"
     end
   end
 
