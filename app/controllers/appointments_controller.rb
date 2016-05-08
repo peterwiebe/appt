@@ -1,4 +1,6 @@
 class AppointmentsController < ApplicationController
+  before_action :set_appointment, only: [:show, :edit, :update, :destroy]
+
   def index
     @appointments = Appointment.all
   end
@@ -20,15 +22,12 @@ class AppointmentsController < ApplicationController
   end
 
   def show
-    @appointment = Appointment.find(params[:id])
   end
 
   def edit
-    @appointment = Appointment.find(params[:id])
   end
 
   def update
-    @appointment = Appointment.find(params[:id])
 
     if @appointment.update(appointment_params)
       flash[:notice] = "Appointment has been updated."
@@ -40,7 +39,6 @@ class AppointmentsController < ApplicationController
   end
 
   def destroy
-    @appointment = Appointment.find(params[:id])
     @appointment.destroy
 
     flash[:notice] = "Appointment has been cancelled."
@@ -50,5 +48,12 @@ class AppointmentsController < ApplicationController
   private
     def appointment_params
       params.require(:appointment).permit(:date, :time)
+    end
+
+    def set_appointment
+      @appointment = Appointment.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      flash[:alert] = "The appointment you were looking for could not be found."
+      redirect_to appointments_path
     end
 end
