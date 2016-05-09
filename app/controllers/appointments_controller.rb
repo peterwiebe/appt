@@ -7,10 +7,12 @@ class AppointmentsController < ApplicationController
 
   def new
     @appointment = Appointment.new
+    @buttonText = "Make Appointment"
   end
 
   def create
     @appointment = Appointment.new(appointment_params)
+    @appointment.client = current_user
 
     if @appointment.save
       flash[:notice] = "Appointment has been created."
@@ -25,6 +27,7 @@ class AppointmentsController < ApplicationController
   end
 
   def edit
+    @buttonText = "Update Appointment"
   end
 
   def update

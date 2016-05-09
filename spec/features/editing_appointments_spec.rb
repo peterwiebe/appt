@@ -10,7 +10,8 @@ RSpec.feature "Users can edit existing appointments" do
   end
 
   scenario "with valid inputs" do
-    fill_in "Date", with: "July 1, 2016"
+    # fill_in "Date", with: "July 1, 2016"
+    page.find('#appointment_date').set("2016-07-01")
     click_button "Update Appointment"
 
     expect(page).to have_content "Appointment has been updated."
@@ -18,7 +19,8 @@ RSpec.feature "Users can edit existing appointments" do
   end
 
   scenario "with invalid inputs" do
-    fill_in "Date", with: ""
+    # fill_in "Date", with: ""
+    page.find('#appointment_date').set("")
     click_button "Update Appointment"
 
     expect(page).to have_content "Appointment has not been updated."

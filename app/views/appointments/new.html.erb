@@ -1,4 +1,4 @@
 <header>
   <h3>New Appointment</h3>
 </header>
-<%= render "form", appointment: @appointment %>
+<%= render partial: "form", locals: { appointment: @appointment, buttonText: @buttonText } %>
