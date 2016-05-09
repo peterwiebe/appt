@@ -1,18 +1,6 @@
-<%= form_for(appointment) do |f| %>
-  <% if appointment.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(appointment.errors.count, "error") %> prohibited this appointment from being saved:</h2>
+<%= simple_form_for(appointment) do |f| %>
+    <%= f.input :date, html5: true %>
+    <%= f.input :time, html5: true %>
 
-      <ul>
-        <% appointment.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-  <p>
-    <%= f.label :date %>
-    <%= f.text_field :date %>
-  </p>
-  <%= f.submit %>
+  <%= f.button :submit, class: "btn-primary" %>
 <% end %>

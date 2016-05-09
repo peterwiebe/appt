@@ -1,5 +1,12 @@
-<h2>Appointments</h2>
-<%= link_to "New Appointment", new_appointment_path %>
+<header>
+  <h2>Appointments</h2>
+
+  <ul class="actions">
+    <li>
+      <%= link_to "New Appointment", new_appointment_path, class: "new" %>
+    </li>
+  </ul>
+</header>
 
 <div id="appointments">
   <% @appointments.each do |appointment| %>

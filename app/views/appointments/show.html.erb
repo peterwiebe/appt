@@ -1,6 +1,14 @@
-<h3>Appointment Details</h3>
+<header>
+  <h3>Appointment Details</h3>
+  <ul class="actions">
+    <li>
+      <%= link_to "Edit Appointment", edit_appointment_path(@appointment), class: "edit" %>
+    </li>
+    <li>
+      <%= link_to "Cancel Appointment", appointment_path(@appointment), method: :delete, data: { confirm: "Are you sure you want to cancel this appointment?" }, class: "cancel" %>
+    </li>
+  </ul>
+</header>
 
 <p>date: <%= @appointment.date %></p>
 <p>time: <%= @appointment.time %></p>
-<%= link_to "Edit Appointment", edit_appointment_path(@appointment) %>
-<%= link_to "Cancel Appointment", appointment_path(@appointment), method: :delete, data: { confirm: "Are you sure you want to cancel this appointment?" } %>
