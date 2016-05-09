@@ -1,14 +1,26 @@
 <header>
   <h2>Appointments</h2>
-
-  <ul class="actions">
-    <li>
-      <%= link_to "New Appointment", new_appointment_path, class: "new" %>
-    </li>
-  </ul>
+  <% if user_signed_in? %>
+    <ul class="actions">
+      <li>
+        <%= link_to "New Appointment", new_appointment_path, class: "new" %>
+      </li>
+    </ul>
+  <% end %>
 </header>
 
+<%= month_calendar events: @appointments do |date, appointments| %>
+  <%= date %>
+
+  <% appointments.each do |appointment| %>
+    <div>
+      <%= link_to "Booking", appointment %>
+    </div>
+  <% end %>
+<% end %>
+
 <div id="appointments">
+  <h4>List of bookings</h4>
   <% @appointments.each do |appointment| %>
     <h2><%= link_to appointment.date, appointment %></h2>
   <% end %>

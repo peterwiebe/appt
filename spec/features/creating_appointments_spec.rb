@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature "Users can create new appointments" do
-  let(:user) { FactoryGirl.create(:user, :admin) }
+  let(:user) { FactoryGirl.create(:user) }
 
   before do
     login_as(user)

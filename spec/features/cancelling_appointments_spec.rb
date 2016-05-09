@@ -1,6 +1,15 @@
 require "rails_helper"
 
 RSpec.feature "Users can cancel appointments" do
+  let(:user) { FactoryGirl.create(:user, :admin) }
+
+  before do
+    login_as(user)
+    visit "/"
+
+    click_link "New Appointment"
+  end
+
   scenario "successfully" do
     FactoryGirl.create(:appointment, date: "June 1, 2016")
 

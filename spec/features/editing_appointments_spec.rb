@@ -1,8 +1,11 @@
 require "rails_helper"
 
 RSpec.feature "Users can edit existing appointments" do
+  let(:user) { FactoryGirl.create(:user) }
+
   before do
-    FactoryGirl.create(:appointment, date: "June 1, 2016")
+    login_as(user)
+    FactoryGirl.create(:appointment, date: "June 1, 2016", client_id: user.id)
 
     visit "/"
     click_link "2016-06-01"
